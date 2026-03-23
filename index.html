@@ -25,11 +25,24 @@ body {font-family: Helvetica; margin:0; background:#fafafa;}
 button {margin-top:10px; padding:10px 20px; border:none; background:black; color:white; border-radius:20px; cursor:pointer;}
 #cart-count {position:fixed; top:20px; right:20px; background:black; color:white; padding:10px 15px; border-radius:20px;}
 #cart-popup {position:fixed; top:70px; right:20px; width:260px; background:white; padding:15px; border-radius:15px; box-shadow:0 5px 20px rgba(0,0,0,0.2); display:none;}
+#notification {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: #28a745; /* това прави зеления цвят */
+  color: white;
+  padding: 15px 25px;
+  border-radius: 30px;
+  opacity: 0;
+  transition: 0.4s;
+  z-index: 9999;
+  font-weight: bold;
+}
 </style>
 </head>
 
 <body>
-
+<div id="notification"></div>
 <div id="cart-count" onclick="toggleCart()">🛒 0</div>
 
 <div id="cart-popup">
@@ -37,6 +50,7 @@ button {margin-top:10px; padding:10px 20px; border:none; background:black; color
 <div id="cart-items"></div>
 <p id="cart-total"></p>
 <button onclick="orderNow()">Поръчай</button>
+
 </div>
 
 <section class="hero">
@@ -135,6 +149,13 @@ let cart = [];
 
 function addToCart(name, price) {
   cart.push({ name, price });
+let notification = document.getElementById("notification");
+notification.innerText = "✔ Вашият продукт беше добавен в количката";
+notification.style.opacity = "1";
+
+setTimeout(() => {
+  notification.style.opacity = "0";
+}, 2000);
   updateCartUI();
 }
 
@@ -178,6 +199,19 @@ function orderNow() {
   let url = "viber://chat?number=%2B" + phone + "&text=" + encodeURIComponent(message);
 
   window.location.href = url;
+}
+function addToCart(name, price) {
+  cart.push({ name, price });
+
+  let notification = document.getElementById("notification");
+  notification.innerText = "✔ Вашият продукт беше добавен в количката";
+  notification.style.opacity = "1";
+
+  setTimeout(() => {
+    notification.style.opacity = "0";
+  }, 2000);
+
+  updateCartUI();
 }
 </script>
 
