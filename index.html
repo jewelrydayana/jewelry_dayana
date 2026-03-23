@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta property="og:title" content="Бижутата на Даяна 💎">
+<meta property="og:description" content="Уникални ръчно изработени бижута 💎 С внимание към всеки детайл ❤️ Красиво опаковани и готови за подарък 🎁 Поръчай лесно през Viber 💌">
+
+<meta property="og:image" content="https://jewelry-dayana.netlify.app/preview.png">
+<meta property="og:url" content="https://jewelry-dayana.netlify.app">
+<meta property="og:type" content="website">
+
+<title>Бижутата на Даяна</title>
+
+<style>
+body {font-family: Helvetica; margin:0; background:#fafafa;}
+.hero {text-align:center; padding:50px 20px;}
+.products {display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:20px; padding:20px;}
+.product {background:white; border-radius:15px; padding:15px; text-align:center; transition:0.3s;}
+.product:hover {transform:translateY(-5px); box-shadow:0 10px 25px rgba(0,0,0,0.1);}
+.product img {width:100%; height:230px; object-fit:contain;}
+.material {color:#777; font-size:14px;}
+.price {color:#e91e63; font-weight:bold;}
+button {margin-top:10px; padding:10px 20px; border:none; background:black; color:white; border-radius:20px; cursor:pointer;}
+#cart-count {position:fixed; top:20px; right:20px; background:black; color:white; padding:10px 15px; border-radius:20px;}
+#cart-popup {position:fixed; top:70px; right:20px; width:260px; background:white; padding:15px; border-radius:15px; box-shadow:0 5px 20px rgba(0,0,0,0.2); display:none;}
+#notification {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: #28a745; /* това прави зеления цвят */
+  color: white;
+  padding: 15px 25px;
+  border-radius: 30px;
+  opacity: 0;
+  transition: 0.4s;
+  z-index: 9999;
+  font-weight: bold;
+}
+</style>
+</head>
+
+<body>
+<div id="notification"></div>
+<div id="cart-count" onclick="toggleCart()">🛒 0</div>
+
+<div id="cart-popup">
+<h3>🛒 Количка</h3>
+<div id="cart-items"></div>
+<p id="cart-total"></p>
+<button onclick="orderNow()">Поръчай</button>
+
+</div>
+
+<section class="hero">
+<h1>Бижутата на Даяна 💎</h1>
+<p>Уникални ръчно изработени бижута 💎</p>
+<p>С внимание към всеки детайл ❤️</p>
+<p>Красиво опаковани и готови за подарък 🎁</p>
+<p>Поръчайте лесно на вайвър 💌</p>
+<button onclick="orderNow()">🛒 Поръчай</button>
+</section>
+
+<div class="products">
+
+<!-- ВСИЧКИТЕ ТВОИ ПРОДУКТИ -->
+<div class="product"><img src="1.jpg"><h3>Ocean Glow</h3><p class="material">Колие на корда с опал и сребро 925</p><p class="price">18 €</p><button onclick="addToCart('Ocean Glow',18)">Добави</button></div>
+
+<div class="product"><img src="2.jpg"><h3>Pink Glow</h3><p class="material">Колие на корда с опал и сребро 925</p><p class="price">18 €</p><button onclick="addToCart('Pink Glow',18)">Добави</button></div>
+
+<div class="product"><img src="3.jpg"><h3>Twin Souls</h3><p class="material">Колие на корда с опал и сребро 925</p><p class="price">25 €</p><button onclick="addToCart('Twin Souls',25)">Добави</button></div>
+
+<div class="product"><img src="4.jpg"><h3>Golden Family Glow</h3><p class="material">Сребро 925 със златно покритие и опал</p><p class="price">40 €</p><button onclick="addToCart('Golden Family Glow',40)">Добави</button></div>
+
+<div class="product"><img src="5.jpg"><h3>Eternal Duo</h3><p class="material">Сребро 925 със златно покритие и опал</p><p class="price">32 €</p><button onclick="addToCart('Eternal Duo',32)">Добави</button></div>
+
+<div class="product"><img src="6.jpg"><h3>Pink Harmony</h3><p class="material">Сребро 925 със златно покритие и опал</p><p class="price">32 €</p><button onclick="addToCart('Pink Harmony',32)">Добави</button></div>
+
+<div class="product"><img src="7.jpg"><h3>Triple Love</h3><p class="material">Сребро 925 със златно покритие и опал</p><p class="price">40 €</p><button onclick="addToCart('Triple Love',40)">Добави</button></div>
+
+<div class="product"><img src="8.jpg"><h3>Ocean Family</h3><p class="material">Сребро 925 със златно покритие и опал</p><p class="price">40 €</p><button onclick="addToCart('Ocean Family',40)">Добави</button></div>
+
+<div class="product"><img src="9.jpg"><h3>Golden Bond</h3><p class="material">Сребро 925 със златно покритие и опал</p><p class="price">32 €</p><button onclick="addToCart('Golden Bond',32)">Добави</button></div>
+
+<div class="product"><img src="10.jpg"><h3>Ocean Twins</h3><p class="material">Сребро 925 със златно покритие и опал</p><p class="price">32 €</p><button onclick="addToCart('Ocean Twins',32)">Добави</button></div>
+
+<div class="product"><img src="11.jpg"><h3>Soft Trio</h3><p class="material">Колие на корда с опал и сребро 925</p><p class="price">30 €</p><button onclick="addToCart('Soft Trio',30)">Добави</button></div>
+
+<div class="product"><img src="12.jpg"><h3>Pink Sisters</h3><p class="material">Колие на корда с опал и сребро 925</p><p class="price">40 €</p><button onclick="addToCart('Pink Sisters',40)">Добави</button></div>
+
+<div class="product"><img src="13.jpg"><h3>Ocean Squad</h3><p class="material">Колие на корда с опал и сребро 925</p><p class="price">40 €</p><button onclick="addToCart('Ocean Squad',40)">Добави</button></div>
+<div class="product"><img src="14.jpg"><h3>Pink Twins</h3><p class="material">Колие на корда с опал и сребро 925</p><p class="price">25 €</p><button onclick="addToCart('Pink Twins',25)">Добави</button></div>
+
+<div class="product"><img src="15.jpg"><h3>Ocean Trio</h3><p class="material">Колие на корда с опал и сребро 925</p><p class="price">30 €</p><button onclick="addToCart('Ocean Trio',30)">Добави</button></div>
+
+<div class="product"><img src="16.jpg"><h3>Ocean Duo</h3><p class="material">Колие на корда с опал и сребро 925</p><p class="price">25 €</p><button onclick="addToCart('Ocean Duo',25)">Добави</button></div>
+
+<div class="product"><img src="17.jpg"><h3>White Butterfly</h3><p class="material">Колие на корда с опал и сребро 925</p><p class="price">18 €</p><button onclick="addToCart('White Butterfly',18)">Добави</button></div>
+
+<div class="product"><img src="18.jpg"><h3>Ocean Heart</h3><p class="material">Колие на корда с опал и сребро 925</p><p class="price">18 €</p><button onclick="addToCart('Ocean Heart',18)">Добави</button></div>
+
+<div class="product"><img src="19.jpg"><h3>Deep Ocean Heart</h3><p class="material">Колие на корда с опал и сребро 925</p><p class="price">18 €</p><button onclick="addToCart('Deep Ocean Heart',18)">Добави</button></div>
+
+<div class="product"><img src="20.jpg"><h3>Pink Butterfly</h3><p class="material">Колие на корда с опал и сребро 925</p><p class="price">18 €</p><button onclick="addToCart('Pink Butterfly',18)">Добави</button></div>
+
+<div class="product"><img src="21.jpg"><h3>Blue Hamsa</h3><p class="material">Стоманено колие с опал</p><p class="price">18 €</p><button onclick="addToCart('Blue Hamsa',18)">Добави</button></div>
+
+<div class="product"><img src="22.jpg"><h3>Pearl Girls</h3><p class="material">Колие на корда със седеф</p><p class="price">10 €</p><button onclick="addToCart('Pearl Girls',10)">Добави</button></div>
+
+<div class="product"><img src="23.jpg"><h3>Pearl Elephant</h3><p class="material">Колие на корда със седеф</p><p class="price">8 €</p><button onclick="addToCart('Pearl Elephant',8)">Добави</button></div>
+
+<div class="product"><img src="24.jpg"><h3>White Clover Pearl</h3><p class="material">Колие на корда със седеф</p><p class="price">8 €</p><button onclick="addToCart('White Clover Pearl',8)">Добави</button></div>
+
+<div class="product"><img src="25.jpg"><h3>Pink Opal Girl</h3><p class="material">Колие на корда с опал и сребро 925</p><p class="price">18 €</p><button onclick="addToCart('Pink Opal Girl',18)">Добави</button></div>
+
+<div class="product"><img src="26.jpg"><h3>Blue Love Set</h3><p class="material">Колие на корда с опал и сребро 925</p><p class="price">20 €</p><button onclick="addToCart('Blue Love Set',20)">Добави</button></div>
+
+<div class="product"><img src="27.jpg"><h3>Ocean Couple</h3><p class="material">Колие на корда с опал и сребро 925</p><p class="price">18 €</p><button onclick="addToCart('Ocean Couple',18)">Добави</button></div>
+
+<div class="product"><img src="28.jpg"><h3>Double Heart Glow</h3><p class="material">Колие на корда с опал и сребро 925</p><p class="price">20 €</p><button onclick="addToCart('Double Heart Glow',20)">Добави</button></div>
+
+<div class="product"><img src="29.jpg"><h3>Boy and Girl Souls Pearl</h3><p class="material">Колие на корда със седеф</p><p class="price">10 €</p><button onclick="addToCart('Boy and Girl Souls Pearl',10)">Добави</button></div>
+
+<div class="product"><img src="30.jpg"><h3>Boys Souls Pearl</h3><p class="material">Колие на корда със седеф</p><p class="price">10 €</p><button onclick="addToCart('Boys Souls Pearl',10)">Добави</button></div>
+
+<div class="product"><img src="31.jpg"><h3>Boy Soul Pearl</h3><p class="material">Колие на корда със седеф</p><p class="price">8 €</p><button onclick="addToCart('Boy Soul Pearl',8)">Добави</button></div>
+
+<div class="product"><img src="32.jpg"><h3>Girls Soul Pearl</h3><p class="material">Колие на корда със седеф</p><p class="price">10 €</p><button onclick="addToCart('Girls Soul Pearl',10)">Добави</button></div>
+
+<div class="product"><img src="33.jpg"><h3>Lucky Elephant Bracelet</h3><p class="material">Гривна с опал и златно топче</p><p class="price">18 €</p><button onclick="addToCart('Lucky Elephant Bracelet',18)">Добави</button></div>
+
+<div class="product"><img src="34.jpg"><h3>Blue Eye Pearl</h3><p class="material">Колие на корда със седеф</p><p class="price">8 €</p><button onclick="addToCart('Blue Eye Pearl',8)">Добави</button></div>
+
+<div class="product"><img src="35.jpg"><h3>Twin Souls Silver</h3><p class="material">Стоманено колие с опал</p><p class="price">20 €</p><button onclick="addToCart('Twin Souls Silver',20)">Добави</button></div>
+
+<div class="product"><img src="36.jpg"><h3>Boys Soul</h3><p class="material">Колие на корда с опал и сребро 925</p><p class="price">30 €</p><button onclick="addToCart('Boys Soul',30)">Добави</button></div>
+
+<div class="product"><img src="37.jpg"><h3>Pearl Soul Classic</h3><p class="material">Колие на корда със седеф</p><p class="price">8 €</p><button onclick="addToCart('Pearl Soul Classic',8)">Добави</button></div>
+
+<div class="product"><img src="38.jpg"><h3>Pearl Bracelet Deluxe</h3><p class="material">Гривна с перли и сребро 925</p><p class="price">18 €</p><button onclick="addToCart('Pearl Bracelet Deluxe',18)">Добави</button></div>
+
+<!-- (всички останали вече са коригирани и подредени) -->
+
+</div>
+
+<script>
+let cart = [];
+
+function addToCart(name, price) {
+  cart.push({ name, price });
+let notification = document.getElementById("notification");
+notification.innerText = "✔ Вашият продукт беше добавен в количката";
+notification.style.opacity = "1";
+
+setTimeout(() => {
+  notification.style.opacity = "0";
+}, 2000);
+  updateCartUI();
+}
+
+function updateCartUI() {
+  document.getElementById("cart-count").innerText = "🛒 " + cart.length;
+
+  let items = "";
+  let total = 0;
+
+  cart.forEach(item => {
+    items += `<p>${item.name} - ${item.price}€</p>`;
+    total += item.price;
+  });
+
+  document.getElementById("cart-items").innerHTML = items;
+  document.getElementById("cart-total").innerText = "Общо: " + total + "€";
+}
+
+function toggleCart() {
+  let popup = document.getElementById("cart-popup");
+  popup.style.display = popup.style.display === "block" ? "none" : "block";
+}
+
+function orderNow() {
+  if (cart.length === 0) {
+    alert("Количката е празна");
+    return;
+  }
+
+  let message = "Здравей! Искам да поръчам:\n";
+  let total = 0;
+
+  cart.forEach(item => {
+    message += "- " + item.name + " (" + item.price + "€)\n";
+    total += item.price;
+  });
+
+  message += "\nОбщо: " + total + "€";
+
+  let phone = "359876881626";
+  let url = "viber://chat?number=%2B" + phone + "&text=" + encodeURIComponent(message);
+
+  window.location.href = url;
+}
+function addToCart(name, price) {
+  cart.push({ name, price });
+
+  let notification = document.getElementById("notification");
+  notification.innerText = "✔ Вашият продукт беше добавен в количката";
+  notification.style.opacity = "1";
+
+  setTimeout(() => {
+    notification.style.opacity = "0";
+  }, 2000);
+
+  updateCartUI();
+}
+</script>
+
+</body>
+</html>
